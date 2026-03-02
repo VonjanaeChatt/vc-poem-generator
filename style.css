@@ -35,12 +35,17 @@ header {
     margin-bottom: 40px;
 
 }
-form {
+.formwrapper{
     padding:30px;
     background-color:bisque;
     border-radius: 10px;
+   opacity: 0.9;
+}
+form {
+   background-color: bisque;
+   opacity: 0.9;
     display: flex;
-    opacity: 0.9;
+    
 }
 .instructions {
 padding: 15px;
