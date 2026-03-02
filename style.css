@@ -1,4 +1,42 @@
-.submit{
-    background-color: aliceblue;
-    color:pink;
+body {
+  background-image: url("/Peach\ Pink\ and\ Yellow\ Abstract\ Linktree\ Background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}  
+  .poem {
+  font-family: "The Girl Next Door", cursive;
+  font-weight: 400;
+  font-style: normal;
+  }
+
+
+.container {
+   margin: 120px auto;
+   max-width: 600px;
+
+}
+h1 {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.5;
+  text-align: center;
+  
+}
+header {
+    margin-bottom: 40px;
+
+}
+form {
+    padding:30px;
+    background-color:bisque;
+    border-radius: 15px;
+    display: flex;
+    opacity: 0.9;
+}
+.instructions {
+padding: 20px;
+border: 2px solid rgb(255, 89, 144);
+width: 70%;
 }
