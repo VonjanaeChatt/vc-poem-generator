@@ -16,32 +16,48 @@ function displayPoem(response) {
   }
 
   const cleanPoem = cleanText(response.data.answer);
+
+  if (typewriterInstance) {
+    typewriterInstance.stop();
+    typewriterInstance = null;
+  }
+
   poemDiv.innerHTML = "";
 
-  typewriterInstance = new Typewriter("#poem", {
-    strings: [cleanPoem],
-    autoStart: true,
-    loop:false,
+  typewriterInstance = new Typewriter(poemDiv, {
     delay: 75,
-    cursor:""
-    
+    cursor: ""
   });
+
+  typewriterInstance
+    .typeString(cleanPoem)
+    .start();
 }
 
 function generatePoem(event) {
   event.preventDefault();
+
   const topic = input.value.trim();
   if (!topic) return;
+
+  if (typewriterInstance) {
+    typewriterInstance.stop();
+    typewriterInstance = null;
+  }
 
   poemDiv.textContent = `⏳ Generating a romantic poem about "${topic}"...`;
 
   const context = "You are a romantic Poem expert and love to write short poems. Your mission is to generate a 8-10 line poem in basic HTML and separate each line with a <br />. Make sure to follow the user instructions and include a title. Sign the poem with 'AI Poet' inside a <strong> element at the end of the poem.";
+  
   const prompt = `User instructions: Generate a romantic poem about ${topic}`;
+  
   const apiURL = `https://api.shecodes.io/ai/v1/generate?prompt=${encodeURIComponent(prompt)}&context=${encodeURIComponent(context)}&key=${apiKey}`;
 
-  axios.get(apiURL).then(displayPoem).catch(() => {
-    poemDiv.textContent = "Failed to generate poem.";
-  });
+  axios.get(apiURL)
+    .then(displayPoem)
+    .catch(() => {
+      poemDiv.textContent = "Failed to generate poem.";
+    });
 }
 
 poemForm.addEventListener("submit", generatePoem);
